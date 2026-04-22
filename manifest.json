@@ -1,0 +1,95 @@
+{
+  "name": "Hebrew Learning Cards",
+  "short_name": "HebrewCards",
+  "description": "Progressive Hebrew literacy flashcards with SRS mastery engine",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "categories": ["education"],
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "./icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./screenshots/lobby.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Lobby - Select learning mode"
+    },
+    {
+      "src": "./screenshots/studying.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Flashcard with writing grid"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Letters & Vowels",
+      "short_name": "Letters",
+      "description": "Jump straight to letter flashcards",
+      "url": "./index.html?mode=letters",
+      "icons": [{ "src": "./icons/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Vocabulary",
+      "short_name": "Vocab",
+      "description": "Holiday, blessing, and modern Hebrew words",
+      "url": "./index.html?mode=vocabulary",
+      "icons": [{ "src": "./icons/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ]
+}

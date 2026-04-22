@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- ── Viewport ─────────────────────────────────────────── -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- ── Basic SEO ─────────────────────────────────────────── -->
+  <title>Hebrew Learning Cards | כַּרְטִיסִיּוֹת עִבְרִית</title>
+  <meta name="description" content="Progressive Hebrew literacy flashcards with SRS mastery engine — Letters, Vowels, Phonics, and Vocabulary." />
+  <meta name="keywords" content="Hebrew, flashcards, aleph-bet, niqqud, Jewish education, language learning" />
+  <link rel="canonical" href="https://your-github-username.github.io/hebrew-cards/" />
+
+  <!-- ── PWA Manifest ───────────────────────────────────────── -->
+  <link rel="manifest" href="./manifest.json" />
+
+  <!-- ── Theme Color ───────────────────────────────────────── -->
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="msapplication-TileColor" content="#0f172a" />
+  <meta name="msapplication-TileImage" content="./icons/icon-144x144.png" />
+
+  <!-- ══════════════════════════════════════════════════════════
+       iOS / iPadOS Safari PWA Meta Tags
+  ══════════════════════════════════════════════════════════ -->
+  <!-- Makes app launch in full-screen when added to Home Screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- Status bar style: default | black | black-translucent -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- Name shown under the icon on Home Screen -->
+  <meta name="apple-mobile-web-app-title" content="HebrewCards" />
+
+  <!-- Apple Touch Icons (no gloss, no radius — iOS handles that) -->
+  <link rel="apple-touch-icon" href="./icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="152x152"  href="./icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="167x167"  href="./icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180"  href="./icons/icon-192x192.png" />
+
+  <!-- iPad Splash Screens (Portrait) -->
+  <!-- iPad Pro 12.9" -->
+  <link rel="apple-touch-startup-image"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        href="./splashscreens/iPad_Pro_12_9.png" />
+  <!-- iPad Pro 11" / iPad Air 10.9" -->
+  <link rel="apple-touch-startup-image"
+        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+        href="./splashscreens/iPad_Pro_11.png" />
+  <!-- iPad (9th gen) -->
+  <link rel="apple-touch-startup-image"
+        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+        href="./splashscreens/iPad_9th_gen.png" />
+  <!-- iPhone 14 Pro Max -->
+  <link rel="apple-touch-startup-image"
+        media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)"
+        href="./splashscreens/iPhone_14_Pro_Max.png" />
+
+  <!-- ── Open Graph ────────────────────────────────────────── -->
+  <meta property="og:title" content="Hebrew Learning Cards" />
+  <meta property="og:description" content="Progressive Hebrew literacy flashcards with SRS mastery engine." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-github-username.github.io/hebrew-cards/" />
+  <meta property="og:image" content="./icons/icon-512x512.png" />
+
+  <!-- ── Google Fonts — Noto Sans Hebrew ──────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ── Favicon ────────────────────────────────────────────── -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-72x72.png" />
+
+  <style>
+    /* Critical above-fold CSS to prevent FOUC */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #f1f5f9; }
+    #root { height: 100%; }
+    body {
+      font-family: 'Noto Sans Hebrew', system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-text-size-adjust: 100%;
+      /* Safe area insets for iPhone notch / Dynamic Island */
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Tailwind bundle — Vite will replace this -->
+  <script type="module" src="./src/main.jsx"></script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       Service Worker Registration
+       - Must be registered from the page scope root
+       - Uses relative path for GitHub Pages subdirectory support
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker
+          .register('./sw.js', { scope: './' })
+          .then(function (registration) {
+            console.log('[App] Service Worker registered. Scope:', registration.scope);
+
+            // Listen for updates and prompt user to refresh
+            registration.addEventListener('updatefound', function () {
+              const newWorker = registration.installing;
+              if (!newWorker) return;
+              newWorker.addEventListener('statechange', function () {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // A new version is available; could show a toast here
+                  console.log('[App] New version available. Reload to update.');
+                }
+              });
+            });
+          })
+          .catch(function (error) {
+            console.error('[App] Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
